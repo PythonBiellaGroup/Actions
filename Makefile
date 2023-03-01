@@ -102,7 +102,7 @@ check: ## check the status of the docker containers
 	docker ps -a | grep "actions"
 
 check_logs: ## check the logs of the application container
-	docker logs -t app
+	docker logs -t backend
 
 check_exec: ## exec bash in the python app container
 	docker exec -it app /bin/bash

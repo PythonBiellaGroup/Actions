@@ -2,19 +2,21 @@ version: "3.8"
 services:
   app:
     #image: endpoint where your image is : develop
+    platform: linux/amd64
     build:
       dockerfile: ./Docker/app.poetry.dockerfile
+
       context: .
     container_name: backend
     env_file:
       - .env
     restart: always
     environment:
-      LOG_VERBOSITY: ${LOG_VERBOSITY}
+      LOG_VERBOSITY: ${LOG_VERBOSITY:-INFO}
     # depends_on:
     #   - db
-    volumes:
-      - ${ECS_LOG_PATH:-/data/logs/project}:/project/logs
+    # volumes:
+    #   - ${ECS_LOG_PATH:-./logs/project}:/project/logs
     ports:
       - "${APP_DOCKER_PORT:-8045}:${APP_ENDPOINT_PORT:-8000}"
   # db:
