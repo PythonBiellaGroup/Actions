@@ -1,0 +1,45 @@
+---
+default_language_version:
+  python: python3.9
+default_stages: [commit, push]
+repos:
+  - hooks:
+      - entry: poetry run black .
+        id: black
+        language: system
+        name: black
+        types: [python]
+      - entry: poetry run flake8 .
+        id: flake8
+        language: system
+        name: flake8
+        types: [python]
+    repo:
+      local
+      #   language: system
+      #   types: [python]
+      #   - id: detect_secrets
+      #     name: detect_secrets
+      #     entry: poetry run detect-secrets scan --baseline .secrets.baseline .
+      #     language: system
+      #     types: [python]
+      #     exclude: package.lock.json
+      # - id: detect-secrets
+      #   name: detect-secrets
+      #   # entry: git ls-files -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
+      #   entry: git diff --staged --name-only -z | xargs -0 detect-secrets-hook --baseline .secrets.baseline
+      #   language: system
+      #   types: [python]
+      # - id: ruff
+      #   name: ruff
+      #   entry: poetry run ruff --fix --no-cache --force-exclude .
+#      - id: isort
+#        name: isort
+#        entry: poetry run isort .
+#        language: system
+#        types: [python]
+# - id: poetry-check
+#   name: poetry check
+#   entry: poetry check
+#   language: system
+#   types: [bash]
