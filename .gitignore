@@ -8,10 +8,12 @@
 #### > CUSTOM RULES ####
 ########################
 
+replay
 .DS_Store
 .venv
 .pdm.toml
 .ruff_cache
+testone
 
 #We don't want to push the data
 *.csv
