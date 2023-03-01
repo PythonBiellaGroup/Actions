@@ -20,7 +20,7 @@ class Settings(BaseSettings):
 
     # Set the application variables
     APP_NAME: str = "Test"
-    
+
     API_ENDPOINT_PORT: int = 8000
     APP_DOCKER_PORT: int = 8042
     API_ENDPOINT_HOST: str = "127.0.0.1"
@@ -30,7 +30,7 @@ class Settings(BaseSettings):
     PROJECT_NAME: str = "Test backend"
     DEBUG_MODE: bool = True
     RELEASE: str = "unknown"
-    
+
     # BACKEND_CORS_ORIGINS is a JSON-formatted list of origins
     # "http://localhost:8080", "http://local.dockertoolbox.tiangolo.com"]'
     BACKEND_CORS_ORIGINS: list[AnyHttpUrl] = []
@@ -58,7 +58,7 @@ class Settings(BaseSettings):
             diagnose=False,
             encoding="utf8",
         )
-    
+
         # Proxy loguru logs also to logging logger.
         # The ecs logging formats all logs from the python logging system for elastic.
         # It could be configured to read logs directly from loguru, but in that case it

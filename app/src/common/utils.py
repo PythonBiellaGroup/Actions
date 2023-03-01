@@ -145,11 +145,7 @@ def date2millis(date: str, date_format: str = "%Y-%m-%d %H:%M:%S") -> Optional[f
     Returns:
         typing.Union[dt.datetime, None]: datetime corresponding to the given number of milliseconds or None if date is None.
     """
-    return (
-        dt.datetime.strptime(date, date_format).timestamp() * 1000
-        if pd.notnull(date)
-        else None
-    )
+    return dt.datetime.strptime(date, date_format).timestamp() * 1000 if pd.notnull(date) else None
 
 
 def parse_date(date: str, date_format: str = "%Y-%m-%d") -> dt.date:
@@ -183,9 +179,7 @@ def date_to_string(date: dt.date, date_format: str = "%Y-%m-%d") -> Union[float,
     return date.strftime(date_format) if not pd.isnull(date) else np.nan
 
 
-def datetime_to_string(
-    date: dt.datetime, date_format: str = "%Y-%m-%d %H:%M:%S"
-) -> Union[float, str]:
+def datetime_to_string(date: dt.datetime, date_format: str = "%Y-%m-%d %H:%M:%S") -> Union[float, str]:
     """Returns a string representation of a datetime object
 
     Args:
@@ -201,9 +195,7 @@ def datetime_to_string(
         return np.nan
 
 
-def string_to_date(
-    x: Union[str, dt.date, Any], date_format: str = "%Y-%m-%d %H:%M:%S"
-) -> Union[float, dt.date]:
+def string_to_date(x: Union[str, dt.date, Any], date_format: str = "%Y-%m-%d %H:%M:%S") -> Union[float, dt.date]:
     """Convert a string to a datetime object, specyfing the format of the string
 
     Args:
@@ -214,9 +206,7 @@ def string_to_date(
         _description_
     """
     if isinstance(x, str):
-        return (
-            dt.datetime.strptime(x, date_format).date() if not pd.isnull(x) else np.nan
-        )
+        return dt.datetime.strptime(x, date_format).date() if not pd.isnull(x) else np.nan
     elif isinstance(x, dt.date):
         return x
     else:
@@ -250,9 +240,7 @@ def parsedates_withhour(column: pd.Series) -> pd.Series:
         return pd.to_datetime(column_stripped, format="%d/%m/%Y %H:%M:%S")
     except Exception as message:
         logger.warning(f"date {column.name} has wrong format! {message}")
-        return pd.to_datetime(
-            column_stripped, format="%d/%m/%Y %H:%M:%S", errors="coerce"
-        )
+        return pd.to_datetime(column_stripped, format="%d/%m/%Y %H:%M:%S", errors="coerce")
 
 
 def string_contains(text: str, words: str) -> bool:
@@ -370,9 +358,7 @@ def check_df(dataframe: pd.DataFrame, sample: bool = False) -> None:
         dataframe (pd.DataFrame): the pandas dataframe you want to check
         sample (bool): If you want also a sample of top 5 rows. Defaults to False.
     """
-    logger.info(
-        f"Dataframe Shape: {dataframe.shape} with rows: {dataframe.shape[0]} and columns: {dataframe.shape[1]}"
-    )
+    logger.info(f"Dataframe Shape: {dataframe.shape} with rows: {dataframe.shape[0]} and columns: {dataframe.shape[1]}")
     logger.info(f"\nDF Columns: \n{list(dataframe.columns)}")
     if sample:
         logger.info(f"\nData:\n{dataframe.head(5)}")
@@ -506,9 +492,7 @@ def read_yaml(file_path: str, filename: str = "") -> dict:
         return {}
 
 
-def write_dataset_yaml(
-    to_path: str = "", filename: str = "", dataset: pd.DataFrame = None
-) -> bool:
+def write_dataset_yaml(to_path: str = "", filename: str = "", dataset: pd.DataFrame = None) -> bool:
     """Write a pandas dataset to yaml
 
     Args:
@@ -571,9 +555,7 @@ def last_of_month(date: dt.date) -> dt.date:
     Returns:
         date: Last day of month
     """
-    d = dt.date(
-        date.year + int(date.month / 12), date.month % 12 + 1, 1
-    ) - dt.timedelta(days=1)
+    d = dt.date(date.year + int(date.month / 12), date.month % 12 + 1, 1) - dt.timedelta(days=1)
 
     return d
 

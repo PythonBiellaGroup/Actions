@@ -90,16 +90,16 @@ create_network: ## create the docker network for the project
 	docker network create template
 
 launch: ## launch the python application containers
-	docker-compose -p template up --build -d 
+	docker-compose -p actions up --build -d 
 
 launch_all: ## launch the backend project containers only
-	docker-compose -p template up --build -d app
+	docker-compose -p actions up --build -d app
 
 launch_db: ## launch the database container only
-	docker-compose -p template up --build -d db
+	docker-compose -p actions up --build -d db
 
 check: ## check the status of the docker containers
-	docker ps -a | grep "template"
+	docker ps -a | grep "actions"
 
 check_logs: ## check the logs of the application container
 	docker logs -t app
@@ -108,11 +108,11 @@ check_exec: ## exec bash in the python app container
 	docker exec -it app /bin/bash
 
 stop: ## stop all containers
-	docker-compose -p template down
+	docker-compose -p backend down
 	# docker-compose down -v
 
 stop_clear: ## stop containers and clean the volumes
-	docker-compose -p template down -v
+	docker-compose -p actions down -v
 
 clean_volumes: ## clean the docker volumes
 	docker volume prune

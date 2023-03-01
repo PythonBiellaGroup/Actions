@@ -1,5 +1,4 @@
 from typing import Any
-from loguru import logger
 from fastapi import FastAPI, responses
 from starlette.middleware.cors import CORSMiddleware
 
